@@ -9,19 +9,19 @@ and open the template in the editor.
              xmlns:h="http://java.sun.com/jsf/html"
              xmlns:p="http://primefaces.org/ui">
 
-    <h:form id="formMarca">
-        <p:panel header="Cadastro de Marca" id="painelMarca">
+    <h:form id="formOpcional">
+        <p:panel header="Cadastro de Opcionais" id="painelOpcional">
             <p:growl/>
             <h:inputHidden
-                value="#{marcaManagedBean.marca.idMarca}"/>
+                value="#{opcionalManagedBean.opcional.idOpcional}"/>
             Descrição:
             <p:inputText
-                value="#{marcaManagedBean.marca.descricao}"/>
+                value="#{opcionalManagedBean.opcional.descricao}"/>
             <p:commandButton 
                 value="Salvar" 
                 icon="ui-icon-disk" 
-                actionListener="#{marcaManagedBean.salvar()}"
-                update="painelMarca, :painelTabela"/>
+                actionListener="#{opcionalManagedBean.salvar()}"
+                update="painelOpcional, :formTabela:painelTabela"/>
         </p:panel>
     </h:form>
 

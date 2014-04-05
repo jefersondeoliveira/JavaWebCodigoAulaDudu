@@ -3,6 +3,7 @@ package br.com.javaweb.aula.entidade;
 
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "opcional")
@@ -16,6 +17,7 @@ public class Opcional {
     
     @Column(name = "descricao",
             nullable = false,length = 50)
+    @NotNull(message = "Informe a descrição")
     private String descricao;
     
     @ManyToMany(fetch = FetchType.LAZY,
