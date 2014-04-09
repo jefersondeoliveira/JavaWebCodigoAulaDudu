@@ -6,14 +6,30 @@ and open the template in the editor.
 <!DOCTYPE html>
 <ui:fragment xmlns="http://www.w3.org/1999/xhtml"
              xmlns:ui="http://java.sun.com/jsf/facelets"
-             xmlns:p="http://primefaces.org/ui">
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:h="http://java.sun.com/jsf/html">
 
+    <h:form id="formTabela">
+    
+    <p:contextMenu for="tabelaMarca">
+        <p:menuitem value="Excluir" icon="ui-icon-close"
+                    actionListener="#{marcaManagedBean.excluir()}"
+                    update="painelTabela"></p:menuitem>
+         <p:menuitem value="Editar" icon="ui-icon-pencil"
+                     actionListener="#{marcaManagedBean.editar()}"
+                    update=":formMarca:painelMarca"></p:menuitem>
+    </p:contextMenu>
+    
     <p:panel header="Marcas cadastradas" id="painelTabela">
         <p:dataTable paginator="true"
                      rows="10"
+                     id="tabelaMarca"
                      emptyMessage="Nenhuma marca cadastrada"
+                     rowKey="#{marca.idMarca}"
+                     selection="#{marcaManagedBean.marcaSelecionada}"
                      value="#{marcaManagedBean.listar()}"
-                     var="marca">
+                     var="marca"
+                     selectionMode="single">
 
             <p:column headerText="Código">
                 #{marca.idMarca}
@@ -24,6 +40,6 @@ and open the template in the editor.
             </p:column>
         </p:dataTable>
     </p:panel>
-
+</h:form>
 
 </ui:fragment>

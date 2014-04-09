@@ -9,4 +9,7 @@ public interface IMarcaService {
     public List<Marca> listar();
     
     public String salvar(Marca marca);
+    
+    public String remover(Short id);
+
 }

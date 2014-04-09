@@ -13,7 +13,7 @@ public class MarcaService implements IMarcaService {
 
     @PersistenceContext
     private EntityManager em;
-
+    
     @Override
     public List<Marca> listar() {
 
@@ -30,6 +30,20 @@ public class MarcaService implements IMarcaService {
             
             em.merge(marca);
 
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ex.getMessage();
+        }
+
+        return null;
+    }
+
+    @Override
+    public String remover(Short idMarca) {
+        try {
+            
+           em.remove(em.find(Marca.class, idMarca));
+            
         } catch (Exception ex) {
             ex.printStackTrace();
             return ex.getMessage();

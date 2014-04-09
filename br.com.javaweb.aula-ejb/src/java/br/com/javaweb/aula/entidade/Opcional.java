@@ -13,6 +13,7 @@ public class Opcional {
     @GeneratedValue(strategy 
             = GenerationType.IDENTITY)
     @Column(name = "idOpcional",nullable = false)
+    
     private Short idOpcional;
     
     @Column(name = "descricao",
