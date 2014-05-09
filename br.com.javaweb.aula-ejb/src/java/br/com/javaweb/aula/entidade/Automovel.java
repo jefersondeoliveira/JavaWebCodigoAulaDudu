@@ -2,6 +2,7 @@ package br.com.javaweb.aula.entidade;
 
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Automovel
@@ -11,9 +12,11 @@ public class Automovel
     @Column(name = "idAutomovel", nullable = false)
     private Integer idAutomovel;
     
+    @NotNull(message = "Informe o ano")
     @Column(name = "ano", nullable = false)
     private Integer ano;
     
+    @NotNull(message = "Informe o valor")
     @Column(name = "valor",nullable = true)
     private Double valor;
     
@@ -34,6 +37,10 @@ public class Automovel
        joinColumns = @JoinColumn(name="idAutomovel"),
        inverseJoinColumns = @JoinColumn(name = "idOpcional"))
     private List<Opcional> opcionais;
+    
+    @NotNull(message = "Informe a quantidade de portas")
+    @Column(name = "quantidadePortas", nullable = false)
+    private Short quantidadePortas;
 
     public List<Opcional> getOpcionais() {
         return opcionais;
@@ -91,5 +98,14 @@ public class Automovel
     public void setModelo(Modelo modelo) {
         this.modelo = modelo;
     }
+
+    public Short getQuantidadePortas() {
+        return quantidadePortas;
+    }
+
+    public void setQuantidadePortas(Short quantidadePortas) {
+        this.quantidadePortas = quantidadePortas;
+    }
      
+    
 }

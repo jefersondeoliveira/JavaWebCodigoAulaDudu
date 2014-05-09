@@ -2,6 +2,7 @@
 package br.com.javaweb.aula.entidade;
 
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -49,6 +50,28 @@ public class Opcional {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.idOpcional);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Opcional other = (Opcional) obj;
+        if (!Objects.equals(this.idOpcional, other.idOpcional)) {
+            return false;
+        }
+        return true;
     }
     
     

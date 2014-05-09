@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:form id="formTabela">
+    
+    <p:contextMenu for="tabelaAutomovel">
+        <p:menuitem value="Excluir" icon="ui-icon-close"
+                    actionListener="#{automovelManagedBean.excluir()}"
+                    update="painelTabela"></p:menuitem>
+         <p:menuitem value="Editar" icon="ui-icon-pencil"
+                     actionListener="#{automovelManagedBean.editar()}"
+                    update=":formAutomovel:painelAutomovel"></p:menuitem>
+    </p:contextMenu>
+    
+    <p:panel header="Automoveis cadastrados" id="painelTabela">
+        <p:dataTable paginator="true"
+                     rows="10"
+                     id="tabelaAutomovel"
+                     emptyMessage="Nenhum automovel cadastrado"
+                     rowKey="#{automovel.idAutomovel}"
+                     selection="#{automovelManagedBean.automovelSelecionado}"
+                     value="#{automovelManagedBean.listar()}"
+                     var="automovel"
+                     selectionMode="single">
+
+            <p:column headerText="Código">
+                #{automovel.idAutomovel}
+            </p:column>
+
+            <p:column headerText="Modelo">
+                #{automovel.modelo.descricao}
+            </p:column>
+            
+            <p:column headerText="Ano">
+                #{automovel.ano}
+            </p:column>
+            
+            <p:column headerText="Combustivel">
+                #{automovel.combustivel.descricao}
+            </p:column>
+            
+            <p:column headerText="Cor">
+                #{automovel.cor.descricao}
+            </p:column>
+            
+            <p:column headerText="Qtd Portas">
+                #{automovel.quantidadePortas}
+            </p:column>
+            
+            <p:column headerText="Valor">
+                #{automovel.valor}
+            </p:column>
+            
+            <p:column headerText="Opcionais">
+                
+                <ui:repeat value="#{automovel.opcionais}" var="listOp">
+                    #{listOp.descricao}
+                </ui:repeat>
+                
+                
+            </p:column>
+            
+        </p:dataTable>
+    </p:panel>
+</h:form>
+
+</ui:fragment>

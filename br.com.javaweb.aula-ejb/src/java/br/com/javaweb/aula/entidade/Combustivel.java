@@ -1,6 +1,7 @@
 package br.com.javaweb.aula.entidade;
 
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -40,6 +41,28 @@ public class Combustivel
 
     public void setAutomovel(List<Automovel> automovel) {
         this.automovel = automovel;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 83 * hash + Objects.hashCode(this.idCombustivel);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Combustivel other = (Combustivel) obj;
+        if (!Objects.equals(this.idCombustivel, other.idCombustivel)) {
+            return false;
+        }
+        return true;
     }
     
 }

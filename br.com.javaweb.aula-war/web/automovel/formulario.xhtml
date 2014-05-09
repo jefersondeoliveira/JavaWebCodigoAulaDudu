@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:form id="formAutomovel">
+        <p:panel header="Cadastro de Automovel" id="painelAutomovel">
+            <p:growl/>
+            <h:inputHidden
+                value="#{automovelManagedBean.automovel.idAutomovel}"/>
+            Ano:
+            <p:inputText
+                value="#{automovelManagedBean.automovel.ano}"/>
+            Valor:
+            <p:inputText
+                value="#{automovelManagedBean.automovel.valor}"/>
+            Qtd Portas
+            <p:inputText
+                value="#{automovelManagedBean.automovel.quantidadePortas}"/>
+
+            Modelo: 
+            <p:selectOneMenu
+                value="#{automovelManagedBean.automovel.modelo}"
+                converter="modeloConverter">
+                <f:selectItem 
+                    itemLabel="Selecione um Modelo"
+                    itemValue=""/>
+                <f:selectItems 
+                    value="#{modeloManagedBean.listar()}"
+                    var="modelo"
+                    itemLabel="#{modelo.descricao}"
+                    itemValue="#{modelo}"/>
+            </p:selectOneMenu>
+
+            Cor: 
+            <p:selectOneMenu
+                value="#{automovelManagedBean.automovel.cor}"
+                converter="corConverter">
+                <f:selectItem 
+                    itemLabel="Selecione uma Cor"
+                    itemValue=""/>
+                <f:selectItems 
+                    value="#{corManagedBean.listar()}"
+                    var="cor"
+                    itemLabel="#{cor.descricao}"
+                    itemValue="#{cor}"/>
+            </p:selectOneMenu>
+
+            Combustivel: 
+            <p:selectOneMenu
+                value="#{automovelManagedBean.automovel.combustivel}"
+                converter="combustivelConverter">
+                <f:selectItem 
+                    itemLabel="Selecione um Combustivel"
+                    itemValue=""/>
+                <f:selectItems 
+                    value="#{combustivelManagedBean.listar()}"
+                    var="combustivel"
+                    itemLabel="#{combustivel.descricao}"
+                    itemValue="#{combustivel}"/>
+            </p:selectOneMenu>
+
+            <p:selectManyCheckbox 
+                value="#{automovelManagedBean.automovel.opcionais}"
+                converter="opcionalConverter">
+                <f:selectItems
+                    value="#{opcionalManagedBean.listar()}"
+                    var="opcional"
+                    itemLabel="#{opcional.descricao}"
+                    itemValue="#{opcional}"/>
+            </p:selectManyCheckbox>
+
+            <p:commandButton 
+                value="Salvar" 
+                icon="ui-icon-disk" 
+                actionListener="#{automovelManagedBean.salvar()}"
+                update="painelAutomovel, :formTabela:painelTabela"/>
+        </p:panel>
+    </h:form>
+
+</ui:fragment>

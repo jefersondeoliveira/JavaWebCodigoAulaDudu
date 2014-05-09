@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:form id="formModelo">
+        <p:panel header="Cadastro de Modelos" id="painelModelo">
+            <p:growl/>
+            <h:inputHidden
+                value="#{modeloManagedBean.modelo.idModelo}"/>
+            Descrição:
+            <p:inputText
+                 value="#{modeloManagedBean.modelo.descricao}"/>
+            <br/>
+            Marca:
+            <p:selectOneMenu
+                value="#{modeloManagedBean.modelo.marca}"
+                converter="marcaConverter">
+                <f:selectItem 
+                    itemLabel="Selecione uma Marca"
+                    itemValue=""/>
+                <f:selectItems 
+                    value="#{marcaManagedBean.listar()}"
+                    var="marca"
+                    itemLabel="#{marca.descricao}"
+                    itemValue="#{marca}"/>
+            </p:selectOneMenu>
+            
+            <p:commandButton 
+                value="Salvar" 
+                icon="ui-icon-disk" 
+                actionListener="#{modeloManagedBean.salvar()}"
+                update="painelModelo, :formTabela:painelTabela"/>
+        </p:panel>
+    </h:form>
+
+</ui:fragment>

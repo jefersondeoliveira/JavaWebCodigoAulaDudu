@@ -1,5 +1,6 @@
 package br.com.javaweb.aula.entidade;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -39,6 +40,28 @@ public class Cor
 
     public void setAutomovel(List<Automovel> automovel) {
         this.automovel = automovel;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + Objects.hashCode(this.idCor);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cor other = (Cor) obj;
+        if (!Objects.equals(this.idCor, other.idCor)) {
+            return false;
+        }
+        return true;
     }
     
     

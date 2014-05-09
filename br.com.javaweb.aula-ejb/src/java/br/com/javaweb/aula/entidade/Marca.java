@@ -1,6 +1,7 @@
 package br.com.javaweb.aula.entidade;
 
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -45,6 +46,29 @@ public class Marca {
     public void setModelos(List<Modelo> modelos) {
         this.modelos = modelos;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 19 * hash + Objects.hashCode(this.idMarca);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Marca other = (Marca) obj;
+        if (!Objects.equals(this.idMarca, other.idMarca)) {
+            return false;
+        }
+        return true;
+    }
+    
     
     
 }
