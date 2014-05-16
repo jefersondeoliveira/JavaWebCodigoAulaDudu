@@ -1,6 +1,7 @@
 package br.com.javaweb.aula.controller;
 
 import br.com.javaweb.aula.entidade.Marca;
+import br.com.javaweb.aula.model.GraficoModel;
 import br.com.javaweb.aula.service.IMarcaService;
 import java.util.List;
 import javax.ejb.EJB;
@@ -8,6 +9,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import org.primefaces.model.chart.PieChartModel;
 
 @Named("marcaManagedBean")
 @RequestScoped
@@ -56,6 +58,15 @@ public class MarcaManagedBean {
                     erro, null);
             FacesContext.getCurrentInstance().addMessage(null, fm);
         }
+    }
+    
+    public PieChartModel gerarGrafico(){
+        PieChartModel model = new PieChartModel();
+        List<GraficoModel> graficoModels = marcaService.gerarGrafico();
+        for (GraficoModel graficoModel : graficoModels) {
+            model.set(graficoModel.getNomeMarca(), graficoModel.getQuantidadeModelos());
+        }
+        return model;
     }
 
     public Marca getMarca() {

@@ -1,6 +1,7 @@
 package br.com.javaweb.aula.serviceimpl;
 
 import br.com.javaweb.aula.entidade.Marca;
+import br.com.javaweb.aula.model.GraficoModel;
 import br.com.javaweb.aula.service.IMarcaService;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -50,5 +51,16 @@ public class MarcaService implements IMarcaService {
         }
 
         return null;
+    }
+
+    @Override
+    public List<GraficoModel> gerarGrafico() {
+        
+        TypedQuery<GraficoModel> query 
+                = em.createQuery("select new br.com.javaweb.aula.model.GraficoModel"
+                + "( m.descricao, SIZE(m.modelos)) from Marca as m ", 
+                GraficoModel.class);
+        
+        return query.getResultList();
     }
 }
